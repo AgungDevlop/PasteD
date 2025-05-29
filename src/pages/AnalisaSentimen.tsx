@@ -64,7 +64,7 @@ const AnalisaSentimen: React.FC = () => {
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     } else {
-      navigate("/");
+      navigate("/AnalisaSentimen/");
     }
   }, [navigate]);
 

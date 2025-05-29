@@ -106,7 +106,7 @@ const Login: React.FC = () => {
         });
         setTimeout(() => {
           setModalState({ isOpen: false, type: "", message: "" });
-          navigate("/analisa-sentimen");
+          navigate("/AnalisaSentimen/analisa-sentimen");
         }, 2000);
       } else {
         setModalState({
