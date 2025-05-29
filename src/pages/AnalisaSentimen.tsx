@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { FaUser, FaUpload, FaDownload, FaRedo, FaSearch, FaSort, FaSignOutAlt, FaImage } from "react-icons/fa";
+import { FaUser, FaUpload, FaDownload, FaRedo, FaSearch, FaSort, FaSignOutAlt } from "react-icons/fa";
 import { Bar, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -12,7 +12,6 @@ import {
   Tooltip,
   Legend,
   ArcElement,
-  ChartType,
 } from "chart.js";
 
 // Register Chart.js components
@@ -57,9 +56,6 @@ const AnalisaSentimen: React.FC = () => {
   }>({ kategori: "", namaProduk: "", sentiment: "" });
   const [githubToken, setGithubToken] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const sentimentBarRef = useRef<ChartJS<"bar", number[], string>>(null);
-  const sentimentPieRef = useRef<ChartJS<"pie", number[], string>>(null);
-  const ratingBarRef = useRef<ChartJS<"bar", number[], string>>(null);
   const navigate = useNavigate();
 
   // Retrieve user from sessionStorage
@@ -326,21 +322,6 @@ const AnalisaSentimen: React.FC = () => {
     URL.revokeObjectURL(url);
   };
 
-  // Download chart as PNG
-  const downloadChart = (
-    chartRef: React.RefObject<ChartJS<ChartType, number[], string>>,
-    fileName: string
-  ) => {
-    const chart = chartRef.current;
-    if (chart) {
-      const url = chart.toBase64Image();
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${fileName}.png`;
-      a.click();
-    }
-  };
-
   // Chart data for sentiment distribution
   const sentimentCounts = filteredData.reduce(
     (acc, curr) => {
@@ -388,13 +369,7 @@ const AnalisaSentimen: React.FC = () => {
   const pieChartOptions = {
     responsive: true,
     plugins: {
-      legend: {
-        position: "top" as const,
-        labels: {
-          boxWidth: 20,
-          padding: 10,
-        },
-      },
+      legend: { position: "top" as const },
       title: { display: true, text: "Sentiment Proportions" },
     },
     maintainAspectRatio: false,
@@ -588,15 +563,15 @@ const AnalisaSentimen: React.FC = () => {
         {filteredData.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-200 text-center">
-              <h4 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">Total Reviews</h4>
+              <h4 className="text-base sm:text-lg font-semibold text-gray-800">Total Reviews</h4>
               <p className="text-2xl font-bold text-green-600">{totalReviews}</p>
             </div>
             <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-200 text-center">
-              <h4 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">Average Rating</h4>
+              <h4 className="text-base sm:text-lg font-semibold text-gray-800">Average Rating</h4>
               <p className="text-2xl font-bold text-green-600">{averageRating}</p>
             </div>
             <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-200 text-center">
-              <h4 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">Sentiment Breakdown</h4>
+              <h4 className="text-base sm:text-lg font-semibold text-gray-800">Sentiment Breakdown</h4>
               <p className="text-sm sm:text-base text-gray-600">
                 {sentimentCounts.positive} Positive, {sentimentCounts.negative} Negative
               </p>
@@ -611,19 +586,19 @@ const AnalisaSentimen: React.FC = () => {
             <table className="w-full text-left border-collapse text-sm sm:text-base">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="p-2 sm:p-3 text-gray-800 font-semibold text-sm sm:text-base border-b border-gray-200">
+                  <th className="p-2 sm:p-3 text-gray-800 font-semibold border-b border-gray-300">
                     Ulasan
                   </th>
-                  <th className="p-2 sm:p-3 text-gray-800 font-semibold text-sm sm:text-base border-b border-gray-200 cursor-pointer" onClick={() => handleSort("rating")}>
+                  <th className="p-2 sm:p-3 text-gray-800 font-semibold border-b border-gray-300 cursor-pointer" onClick={() => handleSort("rating")}>
                     Rating {sortKey === "rating" && (sortOrder === "asc" ? <FaSort className="inline" /> : <FaSort className="inline rotate-180" />)}
                   </th>
-                  <th className="p-2 sm:p-3 text-gray-800 font-semibold text-sm sm:text-base border-b border-gray-200">
+                  <th className="p-2 sm:p-3 text-gray-800 font-semibold border-b border-gray-300">
                     Kategori
                   </th>
-                  <th className="p-2 sm:p-3 text-gray-800 font-semibold text-sm sm:text-base border-b border-gray-200">
+                  <th className="p-2 sm:p-3 text-gray-800 font-semibold border-b border-gray-300">
                     Nama Produk
                   </th>
-                  <th className="p-2 sm:p-3 text-gray-800 font-semibold text-sm sm:text-base border-b border-gray-200 cursor-pointer" onClick={() => handleSort("sentiment")}>
+                  <th className="p-2 sm:p-3 text-gray-800 font-semibold border-b border-gray-300 cursor-pointer" onClick={() => handleSort("sentiment")}>
                     Sentiment {sortKey === "sentiment" && (sortOrder === "asc" ? <FaSort className="inline" /> : <FaSort className="inline rotate-180" />)}
                   </th>
                 </tr>
@@ -631,11 +606,11 @@ const AnalisaSentimen: React.FC = () => {
               <tbody>
                 {paginatedData.map((row, index) => (
                   <tr key={index} className="hover:bg-gray-50 transition-colors">
-                    <td className="p-2 sm:p-3 border-b border-gray-200 text-gray-600 text-sm sm:text-base">{row.ulasan}</td>
-                    <td className="p-2 sm:p-3 border-b border-gray-200 text-gray-600 text-sm sm:text-base">{row.rating}</td>
-                    <td className="p-2 sm:p-3 border-b border-gray-200 text-gray-600 text-sm sm:text-base">{row.kategori}</td>
-                    <td className="p-2 sm:p-3 border-b border-gray-200 text-gray-600 text-sm sm:text-base">{row.namaProduk}</td>
-                    <td className="p-2 sm:p-3 border-b border-gray-200 text-gray-600 text-sm sm:text-base">{row.sentiment}</td>
+                    <td className="p-2 sm:p-3 border-b border-gray-300 text-gray-600">{row.ulasan}</td>
+                    <td className="p-2 sm:p-3 border-b border-gray-300 text-gray-600">{row.rating}</td>
+                    <td className="p-2 sm:p-3 border-b border-gray-300 text-gray-600">{row.kategori}</td>
+                    <td className="p-2 sm:p-3 border-b border-gray-300 text-gray-600">{row.namaProduk}</td>
+                    <td className="p-2 sm:p-3 border-b border-gray-300 text-gray-600">{row.sentiment}</td>
                   </tr>
                 ))}
               </tbody>
@@ -646,7 +621,7 @@ const AnalisaSentimen: React.FC = () => {
                 <button
                   onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}
-                  className="text-green-500 hover:text-green-600 disabled:text-gray-400 text-sm sm:text-base transition-colors"
+                  className="text-green-600 hover:text-green-500 disabled:text-gray-400 text-sm sm:text-base transition-colors"
                 >
                   &lt; Prev
                 </button>
@@ -657,7 +632,7 @@ const AnalisaSentimen: React.FC = () => {
                       onClick={() => setCurrentPage(page)}
                       className={`w-8 h-8 rounded-full text-sm sm:text-base transition-colors ${
                         currentPage === page
-                          ? "bg-green-500 text-white"
+                          ? "bg-green-600 text-white"
                           : "text-gray-600 hover:bg-gray-200"
                       }`}
                     >
@@ -668,8 +643,8 @@ const AnalisaSentimen: React.FC = () => {
                   <>
                     <button
                       onClick={() => setCurrentPage(1)}
-                      className={`w-8 h-8 rounded-lg text-sm sm:text-base transition-colors ${
-                        currentPage === 1 ? "bg-green-500 text-white" : "text-gray-600 hover:bg-gray-200"
+                      className={`w-8 h-8 rounded-full text-sm sm:text-base transition-colors ${
+                        currentPage === 1 ? "bg-green-600 text-white" : "text-gray-600 hover:bg-gray-200"
                       }`}
                     >
                       1
@@ -684,9 +659,9 @@ const AnalisaSentimen: React.FC = () => {
                         <button
                           key={page}
                           onClick={() => setCurrentPage(page!)}
-                          className={`w-8 h-8 rounded-lg text-sm sm:text-base transition-colors ${
+                          className={`w-8 h-8 rounded-full text-sm sm:text-base transition-colors ${
                             currentPage === page
-                              ? "bg-green-500 text-white"
+                              ? "bg-green-600 text-white"
                               : "text-gray-600 hover:bg-gray-200"
                           }`}
                         >
@@ -696,9 +671,9 @@ const AnalisaSentimen: React.FC = () => {
                     {currentPage < totalPages - 2 && <span className="text-gray-600">...</span>}
                     <button
                       onClick={() => setCurrentPage(totalPages)}
-                      className={`w-8 h-8 rounded-lg text-sm sm:text-base transition-colors ${
+                      className={`w-8 h-8 rounded-full text-sm sm:text-base transition-colors ${
                         currentPage === totalPages
-                          ? "bg-green-500 text-white"
+                          ? "bg-green-600 text-white"
                           : "text-gray-600 hover:bg-gray-200"
                       }`}
                     >
@@ -709,7 +684,7 @@ const AnalisaSentimen: React.FC = () => {
                 <button
                   onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                   disabled={currentPage === totalPages}
-                  className="text-green-500 hover:text-green-600 disabled:text-gray-400 text-sm sm:text-base transition-colors"
+                  className="text-green-600 hover:text-green-500 disabled:text-gray-400 text-sm sm:text-base transition-colors"
                 >
                   Next &gt;
                 </button>
@@ -721,48 +696,22 @@ const AnalisaSentimen: React.FC = () => {
         {/* Charts */}
         {filteredData.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-800">Sentiment Distribution</h3>
-                <button
-                  onClick={() => downloadChart(sentimentBarRef, "sentiment_distribution")}
-                  className="flex items-center text-green-500 hover:text-green-600 text-sm sm:text-base transition-colors"
-                >
-                  <FaImage className="mr-2" /> Download
-                </button>
-              </div>
-              <div className="h-64 sm:h-80">
-                <Bar ref={sentimentBarRef} data={barChartData} options={barChartOptions} />
+            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200 h-64 sm:h-80">
+              <h3 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800">Sentiment Distribution</h3>
+              <div className="h-full">
+                <Bar data={barChartData} options={barChartOptions} />
               </div>
             </div>
-            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-800">Sentiment Proportions</h3>
-                <button
-                  onClick={() => downloadChart(sentimentPieRef, "sentiment_proportions")}
-                  className="flex items-center text-green-500 hover:text-green-600 text-sm sm:text-base transition-colors"
-                >
-                  <FaImage className="mr-2" /> Download
-                </button>
-              </div>
-              <div className="h-64 sm:h-80 flex justify-center">
-                <div className="w-3/4 sm:w-2/3">
-                  <Pie ref={sentimentPieRef} data={pieChartData} options={pieChartOptions} />
-                </div>
+            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200 h-64 sm:h-80">
+              <h3 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800">Sentiment Proportions</h3>
+              <div className="h-full">
+                <Pie data={pieChartData} options={pieChartOptions} />
               </div>
             </div>
-            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-800">Rating Distribution</h3>
-                <button
-                  onClick={() => downloadChart(ratingBarRef, "rating_distribution")}
-                  className="flex items-center text-green-500 hover:text-green-600 text-sm sm:text-base transition-colors"
-                >
-                  <FaImage className="mr-2" /> Download
-                </button>
-              </div>
-              <div className="h-64 sm:h-80">
-                <Bar ref={ratingBarRef} data={ratingChartData} options={ratingChartOptions} />
+            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200 h-64 sm:h-80">
+              <h3 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800">Rating Distribution</h3>
+              <div className="h-full">
+                <Bar data={ratingChartData} options={ratingChartOptions} />
               </div>
             </div>
           </div>
