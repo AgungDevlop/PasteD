@@ -49,7 +49,7 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({ error, errorInfo }) => {
 // Define the router
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/AnalisaSentimen/",
     element: <App />,
     errorElement: <ErrorFallback />,
     children: [
