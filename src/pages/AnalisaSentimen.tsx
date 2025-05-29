@@ -12,6 +12,7 @@ import {
   Tooltip,
   Legend,
   ArcElement,
+  ChartType,
 } from "chart.js";
 
 // Register Chart.js components
@@ -56,9 +57,9 @@ const AnalisaSentimen: React.FC = () => {
   }>({ kategori: "", namaProduk: "", sentiment: "" });
   const [githubToken, setGithubToken] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const sentimentBarRef = useRef<ChartJS<"bar">>(null);
-  const sentimentPieRef = useRef<ChartJS<"pie">>(null);
-  const ratingBarRef = useRef<ChartJS<"bar">>(null);
+  const sentimentBarRef = useRef<ChartJS<"bar", number[], string>>(null);
+  const sentimentPieRef = useRef<ChartJS<"pie", number[], string>>(null);
+  const ratingBarRef = useRef<ChartJS<"bar", number[], string>>(null);
   const navigate = useNavigate();
 
   // Retrieve user from sessionStorage
@@ -326,7 +327,10 @@ const AnalisaSentimen: React.FC = () => {
   };
 
   // Download chart as PNG
-  const downloadChart = (chartRef: React.RefObject<ChartJS<"bar" | "pie">>, fileName: string) => {
+  const downloadChart = (
+    chartRef: React.RefObject<ChartJS<ChartType, number[], string>>,
+    fileName: string
+  ) => {
     const chart = chartRef.current;
     if (chart) {
       const url = chart.toBase64Image();
