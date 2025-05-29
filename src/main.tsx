@@ -3,14 +3,10 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { RouterProvider, createBrowserRouter, useRouteError } from "react-router-dom";
-import Home from "./pages/Home";
+import Login from "./pages/Login";
 import ErrorBoundary from "./components/ErrorBoundary";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import AboutUs from "./pages/AboutUs";
-import Contact from "./pages/Contact";
-import TermsAndConditions from "./pages/TermsAndConditions";
-import { PageLink } from "./pages/PageLink";
-import { GetLink } from "./pages/GetLink";
+import AnalisaSentimen from "./pages/AnalisaSentimen";
+
 
 // ErrorFallback component with proper typing
 interface ErrorFallbackProps {
@@ -59,37 +55,12 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <Login />,
         errorElement: <ErrorFallback />,
       },
       {
-        path: ":key",
-        element: <PageLink />,
-        errorElement: <ErrorFallback />,
-      },
-      {
-        path: "privacy-policy",
-        element: <PrivacyPolicy />,
-        errorElement: <ErrorFallback />,
-      },
-      {
-        path: "about-us",
-        element: <AboutUs />,
-        errorElement: <ErrorFallback />,
-      },
-      {
-        path: "contact",
-        element: <Contact />,
-        errorElement: <ErrorFallback />,
-      },
-      {
-        path: "terms-and-conditions",
-        element: <TermsAndConditions />,
-        errorElement: <ErrorFallback />,
-      },
-      {
-        path: "getlink",
-        element: <GetLink />,
+        path: "analisa-sentimen",
+        element: <AnalisaSentimen />,
         errorElement: <ErrorFallback />,
       },
     ],
