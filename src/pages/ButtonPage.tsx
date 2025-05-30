@@ -17,10 +17,7 @@ const GITHUB_RAW_URL = "https://raw.githubusercontent.com/AgungDevlop/JokiTugas/
 
 // Array of random URLs
 const RANDOM_URLS = [
-  "https://example.com",
-  "https://example.org",
-  "https://example.net",
-  "https://placeholder.com",
+  "https://obqj2.com/4/9397189",
 ];
 
 const getRandomUrl = () => RANDOM_URLS[Math.floor(Math.random() * RANDOM_URLS.length)];
