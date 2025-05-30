@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Judul -->
+    <title>PasteJav</title>
+
+    <!-- Meta Tag untuk SEO -->
+    <meta
+      name="description"
+      content="Share and access links with PasteJav! Click buttons to open URLs securely and redirect to exciting destinations. Start exploring now!"
+    />
+    <meta
+      name="keywords"
+      content="PasteJav, link sharing, URL redirect, button links, secure link access, web navigation, click to open, random redirect, link management"
+    />
+    <meta name="author" content="PasteJav Team" />
+    <meta name="robots" content="index, follow" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="language" content="English" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PasteJav" />
+    <meta
+      name="twitter:description"
+      content="Share and access links with PasteJav! Click buttons to open URLs securely and redirect to exciting destinations. Start exploring now!"
+    />
+    <meta
+      name="twitter:image"
+      content="https://pastejav.com/banner.webp"
+    />
+    <meta name="twitter:image:alt" content="PasteJav Banner" />
+    <meta name="twitter:site" content="@PasteJav" />
+    <meta name="twitter:creator" content="@PasteJav" />
+
+    <!-- Favicon dan Ikon -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="/icon.webp"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="/icon.webp"
+    />
+
+    <!-- Schema Markup untuk SoftwareApplication -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PasteJav",
+        "operatingSystem": "Web",
+        "applicationCategory": "Utilities",
+        "description": "PasteJav allows users to share and access links through interactive buttons, with secure URL opening and random redirects for an engaging experience.",
+        "url": "https://pastejav.com/",
+        "image": "https://pastejav.com/banner.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "PasteJav Team"
+        }
+      }
+    </script>
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+
+    <!-- Google Tag Manager (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZHX57TZ9L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-EZHX57TZ9L");
+    </script>
+
+    <!-- Fluid Player -->
+    <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+
+    <!-- Redirect Script -->
+    <script>
+      (function (l) {
+        if (l.hash && l.hash.startsWith("#/")) {
+          const newPath = l.hash.replace("#", "");
+          window.location.replace(newPath);
+        }
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="module" crossorigin src="/assets/index-63541c2c.js"></script>
+    <link rel="stylesheet" href="/assets/index-a30f62d7.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>
