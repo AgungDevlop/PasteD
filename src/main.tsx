@@ -3,10 +3,10 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { RouterProvider, createBrowserRouter, useRouteError } from "react-router-dom";
-import Login from "./pages/Login";
+import Generate from "./pages/Generate";
+import ButtonPage from "./pages/ButtonPage";
+import GetLink from "./pages/GetLink";
 import ErrorBoundary from "./components/ErrorBoundary";
-import AnalisaSentimen from "./pages/AnalisaSentimen";
-
 
 // ErrorFallback component with proper typing
 interface ErrorFallbackProps {
@@ -37,7 +37,7 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({ error, errorInfo }) => {
         </div>
       )}
       <button
-        className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+        className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font font-bold py-2 px-4 rounded"
         onClick={() => window.location.reload()}
       >
         Muat Ulang Halaman
@@ -49,18 +49,23 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({ error, errorInfo }) => {
 // Define the router
 const router = createBrowserRouter([
   {
-    path: "/AnalisaSentimen/",
+    path: "/",
     element: <App />,
     errorElement: <ErrorFallback />,
     children: [
       {
         index: true,
-        element: <Login />,
+        element: <Generate />,
         errorElement: <ErrorFallback />,
       },
       {
-        path: "analisa-sentimen",
-        element: <AnalisaSentimen />,
+        path: ":key",
+        element: <ButtonPage />,
+        errorElement: <ErrorFallback />,
+      },
+      {
+        path: "getlink",
+        element: <GetLink />,
         errorElement: <ErrorFallback />,
       },
     ],

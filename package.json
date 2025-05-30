@@ -1,6 +1,6 @@
 {
   "name": "vite-react-router",
-  "homepage": "https://agungdevlop.github.io/AnalisaSentimen/",
+  "homepage": "https://pastejav.my.id",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,29 +14,16 @@
     "generate-sitemap": "node generate-sitemap.js"
   },
   "dependencies": {
-    "axios": "^1.7.9",
-    "chart.js": "^4.4.9",
-    "fluid-player": "^3.50.0",
     "framer-motion": "^12.5.0",
-    "lodash": "^4.17.21",
-    "plyr": "^3.7.8",
-    "plyr-react": "^5.3.0",
     "react": "^18.2.0",
-    "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.2.0",
-    "react-helmet": "^6.1.0",
-    "react-helmet-async": "^2.0.5",
     "react-icons": "^5.3.0",
-    "react-player": "^2.16.0",
-    "react-router-dom": "^6.14.0",
-    "video.js": "^8.21.0"
+    "react-router-dom": "^6.14.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-attributes": "^7.26.0",
-    "@types/lodash": "^4.17.16",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
-    "@types/react-helmet": "^6.1.11",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "@vitejs/plugin-react": "^4.0.0",

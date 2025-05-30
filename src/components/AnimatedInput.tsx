@@ -20,26 +20,26 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
   error,
 }) => (
   <motion.div
-    initial={{ y: 20, opacity: 0 }}
-    animate={{ y: 0, opacity: 1 }}
-    transition={{ duration: 0.5, ease: "easeOut" }}
+    initial={{ y: 20, opacity: 0, scale: 0.95 }}
+    animate={{ y: 0, opacity: 1, scale: 1 }}
+    transition={{ duration: 0.4, ease: "easeOut", type: "spring", stiffness: 100 }}
     className="relative"
   >
     <div className="relative group">
-      <Icon className="absolute left-3 top-1/2 -translate-y-1/2 text-green-600" />
+      <Icon className="absolute left-3 top-1/2 -translate-y-1/2 text-neon-blue text-lg" />
       <input
         type={type}
         placeholder={placeholder}
         onChange={onChange}
         value={value}
-        className={`w-full pl-10 pr-4 py-2 bg-gray-100 text-gray-800 border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-400 transition-all duration-300 ${
+        className={`w-full pl-10 pr-4 py-2.5 bg-gray-900 text-gray-100 border-2 rounded-lg font-orbitron text-sm focus:outline-none focus:ring-2 focus:ring-neon-blue placeholder-gray-500 transition-all duration-300 ${
           error
             ? "border-red-500"
-            : "border-gradient-to-r from-green-400 to-green-600 group-hover:shadow-[0_0_10px_rgba(34,197,94,0.5)]"
+            : "border-gray-700 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.3)]"
         }`}
       />
     </div>
-    {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+    {error && <p className="text-red-500 text-xs mt-1 font-orbitron">{error}</p>}
   </motion.div>
 );
 

@@ -25,7 +25,7 @@ export default defineConfig({
       },
     },
   ],
-  base: "/AnalisaSentimen/",
+  base: "/",
   build: {
     sourcemap: false,
   },
