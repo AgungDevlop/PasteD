@@ -4,10 +4,7 @@ import { FaPlay, FaAngleDoubleRight } from "react-icons/fa";
 
 // Array of random URLs
 const RANDOM_URLS = [
-  "https://example.com",
-  "https://example.org",
-  "https://example.net",
-  "https://placeholder.com",
+  "https://violent-error.com/bY3QV.0_Px3XpUvdb/m/VPJ-Z/DG0u2wMuzOkV0uNnTxgH2ELqTpYmzXOuTDQp1yO_DEcC",
 ];
 
 const getRandomUrl = () => RANDOM_URLS[Math.floor(Math.random() * RANDOM_URLS.length)];
