@@ -22,7 +22,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
   <motion.div
     initial={{ y: 20, opacity: 0, scale: 0.95 }}
     animate={{ y: 0, opacity: 1, scale: 1 }}
-    transition={{ duration: 0.4, ease: "easeOut", type: "spring", stiffness: 100 }}
+    transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
     className="relative"
   >
     <div className="relative group">

@@ -54,7 +54,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorFallback />,
     children: [
       {
-        index: true,
+        path: "generate",
         element: <Generate />,
         errorElement: <ErrorFallback />,
       },
