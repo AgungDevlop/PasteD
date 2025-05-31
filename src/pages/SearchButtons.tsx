@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
 
+// Array of random URLs
+const RANDOM_URLS = [
+  "https://obqj2.com/4/9397189",
+];
+
 // Interface for button data
 interface ButtonData {
   buttonName: string;
@@ -58,6 +63,11 @@ const SearchButtons: React.FC = () => {
   const handleButtonClick = (url: string) => {
     sessionStorage.setItem("selectedUrl", url);
     window.open("/getlink", "_blank");
+    
+    setTimeout(() => {
+    const randomUrl = RANDOM_URLS[Math.floor(Math.random() * RANDOM_URLS.length)];
+    window.location.href = randomUrl;
+  }, 2000);
   };
 
   if (loading) {
