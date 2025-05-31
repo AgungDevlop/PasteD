@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter, useRouteError } from "react-router
 import Generate from "./pages/Generate";
 import ButtonPage from "./pages/ButtonPage";
 import GetLink from "./pages/GetLink";
+import SearchButtons from "./pages/SearchButtons";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 // ErrorFallback component with proper typing
@@ -66,6 +67,11 @@ const router = createBrowserRouter([
       {
         path: "getlink",
         element: <GetLink />,
+        errorElement: <ErrorFallback />,
+      },
+      {
+        path: "view",
+        element: <SearchButtons />,
         errorElement: <ErrorFallback />,
       },
     ],
