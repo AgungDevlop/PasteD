@@ -95,7 +95,7 @@ const SearchButtons: React.FC = () => {
     >
       <div className="max-w-2xl w-full bg-gray-800 bg-opacity-80 backdrop-blur-md p-8 rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.3)] border border-neon-blue">
         <h2 className="text-3xl font-bold text-center mb-8 text-neon-blue tracking-wide font-orbitron">
-          Search Buttons
+          Search By ID
         </h2>
 
         {/* Search Input */}
@@ -103,7 +103,7 @@ const SearchButtons: React.FC = () => {
           <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           <input
             type="text"
-            placeholder="Search by button name..."
+            placeholder="Search by ID..."
             value={searchTerm}
             onChange={handleSearchChange}
             className="w-full p-3 pl-10 bg-gray-900 border border-gray-700 rounded-md text-gray-100 focus:outline-none focus:ring-2 focus:ring-neon-blue font-orbitron"
